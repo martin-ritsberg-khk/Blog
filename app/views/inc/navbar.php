@@ -10,12 +10,22 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
+            <?php
+            if (isset($_SESSION['user_id'])){
+                echo '
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo URLROOT; ?>/user/register">Register</a>
+                <a class="nav-link" href="'.URLROOT.'/users/logout">Logout</a>
+            </li>';
+            } else {
+                echo '
+            <li class="nav-item">
+                <a class="nav-link" href="'.URLROOT.'/users/register">Register</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo URLROOT; ?>/user/login">Login</a>
-            </li>
+                <a class="nav-link" href="'.URLROOT.'/users/login">Login</a>
+            </li>';
+            }
+            ?>
         </ul>
     </div>
 </nav>

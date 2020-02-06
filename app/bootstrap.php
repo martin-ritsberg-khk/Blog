@@ -1,10 +1,10 @@
 <?php
 
+require_once 'config/constants.php';
+
+session_start();
+
 spl_autoload_register( function ($className){
     include 'libraries/'. $className. '.php';
 });
 
-//load required libraries
-//require_once 'libraries/Core.php';
-//require_once 'libraries/Controller.php';
-require_once 'config/constants.php';

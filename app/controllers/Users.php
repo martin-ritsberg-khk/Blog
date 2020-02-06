@@ -78,7 +78,7 @@ class Users extends Controller
             if( empty($data['email_error']) && empty($data['password_error']) ){
                 $loggedInUser = $this->userModel->loginUser($data);
                 if($loggedInUser){
-                    echo "Login ok";
+                    $this->createUserSession($loggedInUser);
                 } else {
                     $data['password_error']='Invalid password';
                     $this->view('users/login', $data);
@@ -89,5 +89,18 @@ class Users extends Controller
         } else {
             $this->view('users/login');
         }
+    }
+
+    public function createUserSession($user){
+        $_SESSION['user_id'] = $user->user_id;
+        $_SESSION['user_email'] = $user->user_email;
+        $_SESSION['user_name'] = $user->user_name;
+        header('Location:'.URLROOT.'/'.'pages/index');
+    }
+
+    public function logout(){
+        session_unset();
+        session_destroy();
+        header('Location:'.URLROOT.'/'.'pages/login');
     }
 }
